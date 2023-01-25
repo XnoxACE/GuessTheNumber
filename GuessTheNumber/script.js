@@ -1,44 +1,55 @@
 let number = Math.floor(Math.random() * 10);
 console.log(number)
+
+
+
 var text_input = document.getElementById("textInput");
+
+
 text_input.addEventListener("keypress",function(event) {
-	console.log(event.code)
+	
 	if (event.code != "Enter")
 		return;
-// will only get here when return key is pressed.
-//handle to a newly created list item.
-	//var list_item = document.createElement("li");
-	//list_item.textContent = text_input.value;
-
-//handle to the unordered list element.
-	//var list = document.getElementById("playlist");
-	//list.appendChild(list_item);
+	numCheck(text_input.value);
 	text_input.value = "";
 });
 
-function init()
-{
+function numCheck(numGuessed){
+  
 
-	
-}
-function handleButtonClick()
-{
-	
-}
-function getResponce(responce){
+    let listNode = document.getElementById("playlist");
+    let liNode = document.createElement("li");
+    let correctNode = document.createTextNode("Correct");
+    let smallNode = document.createTextNode("Number is too small");
+    let bigNode = document.createTextNode("Number is too Big");
 
-    var list = document.getElementById("playlist");
-	//list.appendChild(list_item);
-    if(responce == NaN){
+    if(numGuessed == NaN || numGuessed == ""){
+        console.log("1");
         return;
     }
-    else if(responce > number){
-        var li = document.createElement("li");
-	    list.appendChild("Number is too big");
+    else if(numGuessed == number){
+        console.log("2")
+        liNode.appendChild(correctNode);
+        listNode.appendChild(liNode);
     }
-    else if(responce < number){
-        var li = document.createElement("li");
-	    list.appendChild("Number is too big");
+    else if(numGuessed < number){
+        liNode.appendChild(smallNode);
+        listNode.appendChild(liNode);
     }
+    else if(numGuessed > number){
+        liNode.appendChild(bigNode);
+        listNode.appendChild(liNode);
+    }
+
+
+
+
+    
+   
+
+    
 }
-window.onload = init;
+
+
+
+
